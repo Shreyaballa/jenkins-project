@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/anjalikota10/jenkins-project.git'
+                git branch: 'main', url: 'https://github.com/shreyaballa/jenkins-project.git'
             }
         }
 
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker') {
-                        sh 'docker build -t devops830/python-app:latest .'
+                        sh 'docker build -t shreyasriballa/python-app:latest .'
                     }
                 }
             }
@@ -36,7 +36,7 @@ pipeline {
 
         stage('Scan Docker Image by Trivy') {
             steps {
-                sh 'trivy image --format table -o image-report.html devops830/python-app:latest'
+                sh 'trivy image --format table -o image-report.html shreyasriballa/python-app:latest'
             }
         }
 
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker') {
-                        sh 'docker push devops830/python-app:latest'
+                        sh 'docker push shreyasriballa/python-app:latest'
                     }
                 }
             }

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flaskdemo
-        image: devops830/python-app:latest
+        image: shreyasriballa/python-app:latest
         imagePullPolicy: Always
       imagePullSecrets:
       - name: dockerhub-secret
